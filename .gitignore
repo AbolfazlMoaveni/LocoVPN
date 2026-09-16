@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Don't commit downloaded xray-core binaries or generated runtime configs
+Assets/xray.exe
+**/core/xray.exe
+**/config/config.json

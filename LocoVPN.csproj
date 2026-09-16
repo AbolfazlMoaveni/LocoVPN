@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Optional: add <ApplicationIcon>Assets\logo.ico</ApplicationIcon> once you have a .ico file -->
+    <AssemblyName>LocoVPN</AssemblyName>
+    <RootNamespace>LocoVPN</RootNamespace>
+    <!-- Registry-based proxy switching + killing child processes needs no admin
+         rights for HKCU, but keep this in mind if you later move settings to HKLM. -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="16.2.1" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="CuoreUI.Winforms" Version="2025.9.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Copy assets to output directory. Put background.png and logo.png here. -->
+    <None Include="Assets\background.png" Condition="Exists('Assets\background.png')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\logo.png" Condition="Exists('Assets\logo.png')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Optional: if you already have an xray.exe, drop it in the project root (next to
+         this .csproj) and it will be copied to the output folder and used automatically
+         instead of downloading one - see AppSettings.BundledXrayCandidatePaths. -->
+    <None Include="xray.exe" Condition="Exists('xray.exe')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
