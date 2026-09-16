@@ -164,6 +164,8 @@ public partial class MainForm : Form
                 btnConnectToggle.Content = "Disconnect";
                 lblConnectCaption.Content = "Disconnect";
                 lblConnectionState.Content = "● Connected";
+                // 
+                cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "UN") : "UN")}.svg")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "UN") : "UN")}.svg")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", "UN.svg"));
                 lblConnectionState.ForeColor = Color.FromArgb(80, 220, 140);
                 var flag = _controller.ConnectedServer != null ? CountryFlags.FindFlag(_controller.ConnectedServer.Name) : "";
                 var name = _controller.ConnectedServer != null
@@ -212,5 +214,10 @@ public partial class MainForm : Form
     private void MainForm_FormClosing(object? sender, FormClosingEventArgs e)
     {
         _controller.ShutdownIfConnected();
+    }
+
+    private void cuiPictureBox1_Load(object sender, EventArgs e)
+    {
+
     }
 }

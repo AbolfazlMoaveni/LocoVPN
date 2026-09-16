@@ -11,7 +11,8 @@ public static class CountryFlags
 {
     private static readonly Dictionary<string, string> Flags = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["Germany"] = "🇩🇪",
+        //["Germany"] = "🇩🇪",
+        ["Germany"] = "DE",
         ["United States"] = "🇺🇸",
         ["USA"] = "🇺🇸",
         ["United Kingdom"] = "🇬🇧",

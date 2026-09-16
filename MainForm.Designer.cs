@@ -38,6 +38,7 @@ partial class MainForm
         lblConnectionState = new cuiLabel();
         pnlStatusBar = new cuiPanel();
         lblConnectCaption = new cuiLabel();
+        cntrypic = new cuiPictureBox();
         ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
         pnlStatusBar.SuspendLayout();
         SuspendLayout();
@@ -62,7 +63,7 @@ partial class MainForm
         btnExit.ImageAutoCenter = true;
         btnExit.ImageExpand = new Point(0, 0);
         btnExit.ImageOffset = new Point(0, 0);
-        btnExit.Location = new Point(307, 16);
+        btnExit.Location = new Point(356, 12);
         btnExit.Name = "btnExit";
         btnExit.NormalBackground = Color.FromArgb(30, 255, 255, 255);
         btnExit.NormalForeColor = Color.White;
@@ -85,7 +86,7 @@ partial class MainForm
         picLogo.BackColor = Color.Transparent;
         picLogo.BackgroundImage = Properties.Resources.logo2;
         picLogo.BackgroundImageLayout = ImageLayout.Stretch;
-        picLogo.Location = new Point(20, 16);
+        picLogo.Location = new Point(13, 12);
         picLogo.Name = "picLogo";
         picLogo.Size = new Size(40, 40);
         picLogo.SizeMode = PictureBoxSizeMode.Zoom;
@@ -98,7 +99,7 @@ partial class MainForm
         lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         lblTitle.ForeColor = Color.White;
         lblTitle.HorizontalAlignment = StringAlignment.Center;
-        lblTitle.Location = new Point(68, 24);
+        lblTitle.Location = new Point(99, 16);
         lblTitle.Margin = new Padding(4, 3, 4, 3);
         lblTitle.Name = "lblTitle";
         lblTitle.Size = new Size(200, 28);
@@ -111,7 +112,7 @@ partial class MainForm
         lblSelectServer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         lblSelectServer.ForeColor = Color.FromArgb(220, 225, 235);
         lblSelectServer.HorizontalAlignment = StringAlignment.Center;
-        lblSelectServer.Location = new Point(24, 257);
+        lblSelectServer.Location = new Point(42, 236);
         lblSelectServer.Margin = new Padding(4, 3, 4, 3);
         lblSelectServer.Name = "lblSelectServer";
         lblSelectServer.Size = new Size(300, 24);
@@ -120,6 +121,7 @@ partial class MainForm
         // 
         // comboServers
         // 
+        comboServers.AutoScroll = true;
         comboServers.BackgroundColor = Color.FromArgb(24, 30, 44);
         comboServers.ButtonCursor = Cursors.Arrow;
         comboServers.ButtonHoverBackground = Color.FromArgb(192, 255, 106, 0);
@@ -132,7 +134,7 @@ partial class MainForm
         comboServers.DropDownOutlineColor = Color.FromArgb(30, 255, 255, 255);
         comboServers.ExpandArrowColor = Color.Gray;
         comboServers.ForeColor = Color.White;
-        comboServers.Location = new Point(13, 299);
+        comboServers.Location = new Point(83, 266);
         comboServers.Margin = new Padding(4, 3, 4, 3);
         comboServers.Name = "comboServers";
         comboServers.NoSelectionDropdownText = "Empty";
@@ -140,7 +142,7 @@ partial class MainForm
         comboServers.OutlineColor = Color.FromArgb(60, 255, 255, 255);
         comboServers.OutlineThickness = 1F;
         comboServers.Rounding = 8;
-        comboServers.Size = new Size(326, 44);
+        comboServers.Size = new Size(274, 44);
         comboServers.TabIndex = 4;
         comboServers.SelectedIndexChanged += ComboServers_SelectedIndexChanged;
         // 
@@ -225,7 +227,7 @@ partial class MainForm
         txtLog.BackColor = Color.FromArgb(20, 25, 36);
         txtLog.BorderStyle = BorderStyle.None;
         txtLog.ForeColor = Color.FromArgb(150, 160, 180);
-        txtLog.Location = new Point(24, 81);
+        txtLog.Location = new Point(42, 70);
         txtLog.Multiline = true;
         txtLog.Name = "txtLog";
         txtLog.ReadOnly = true;
@@ -286,10 +288,26 @@ partial class MainForm
         lblConnectCaption.TabIndex = 7;
         lblConnectCaption.VerticalAlignment = StringAlignment.Near;
         // 
+        // cntrypic
+        // 
+        cntrypic.Content = null;
+        cntrypic.ImageTint = Color.White;
+        cntrypic.Location = new Point(28, 266);
+        cntrypic.Margin = new Padding(4, 3, 4, 3);
+        cntrypic.Name = "cntrypic";
+        cntrypic.OutlineThickness = 1F;
+        cntrypic.PanelOutlineColor = Color.Empty;
+        cntrypic.Rotation = 0;
+        cntrypic.Rounding = new Padding(8);
+        cntrypic.Size = new Size(47, 44);
+        cntrypic.TabIndex = 10;
+        cntrypic.Load += cuiPictureBox1_Load;
+        // 
         // MainForm
         // 
         BackColor = Color.FromArgb(30, 40, 48);
         ClientSize = new Size(400, 600);
+        Controls.Add(cntrypic);
         Controls.Add(pnlStatusBar);
         Controls.Add(lblConnectCaption);
         Controls.Add(btnConnectToggle);
@@ -315,4 +333,5 @@ partial class MainForm
     private cuiLabel lblConnectionState;
     private cuiPanel pnlStatusBar;
     private cuiLabel lblConnectCaption;
+    private cuiPictureBox cntrypic;
 }
