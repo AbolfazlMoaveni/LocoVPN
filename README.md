@@ -52,11 +52,20 @@ LocoVPN/
 └── README.md / README-farsi.md
 ```
 
-Two optional, not-yet-present folders the code already looks for:
+Two optional, not-yet-present-in-source folders the code already looks for:
 
 - `Assets\background.png` / `Assets\logo.png` — if you add these, `MainForm.LoadAssets()` picks
   `logo.png` up automatically (overriding the embedded `logo2` resource) at runtime.
 - `xray.exe` in the project root — see "Using Your Own xray.exe" below.
+
+**Release installer note:** the installer you build for distribution bundles an `Assets` folder
+next to the `.exe`, including the flag PNGs, even though none of that is checked into this
+source repo. That's fine for `background.png`/`logo.png` (the code already looks for those
+there). It does **not** currently do anything for the flag images specifically, though — see
+"Known Gaps" below, since `MainForm`'s combo box still only shows flag *emoji* baked into the
+text, with no code yet reading per-country PNGs from `Assets`. If the installer is shipping
+those images assuming the app displays them, that wiring still needs to be written (or, if it
+already exists somewhere, it isn't in the source this README was written from).
 
 ## Setup
 
@@ -197,10 +206,13 @@ is a bigger change and out of scope here.
 ## Known Gaps
 
 - **Per-country flag images**: the combo box currently shows a Unicode flag *emoji* baked into
-  the text (`CountryFlags.cs`), not a real flag icon in a dedicated `PictureBox`. If you've built
-  a `Flags\` folder of PNGs and a picture box for this, it isn't in this snapshot of the repo —
-  worth double-checking it was actually pushed/merged before relying on this README to describe
-  it.
+  the text (`CountryFlags.cs`), not a real flag icon in a dedicated `PictureBox`. You mentioned
+  your release installer already bundles an `Assets` folder with flag PNGs in it — but that
+  folder isn't in this source repo, and nothing in the current code (`MainForm.cs`,
+  `MainForm.Designer.cs`) reads flag images from `Assets` or any other path. So either that
+  loading code exists in a commit/branch not included in this snapshot, or the images are
+  staged for a feature that hasn't been wired up in code yet. Worth confirming which before the
+  next release, since right now those bundled PNGs aren't actually being used by the app.
 - `MainForm` currently has standard window chrome (title bar + border), while `LoadingForm` is
   borderless — this is likely worth making consistent depending on which look you're going for.
 - `cuiCircleProgressBar.Value` in `LoadingForm.cs` is the one property name that was an
