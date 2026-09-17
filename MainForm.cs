@@ -1,4 +1,5 @@
 using LocoVPN.Core;
+using System.Xml.Linq;
 
 namespace LocoVPN;
 
@@ -75,6 +76,7 @@ public partial class MainForm : Form
     private void ComboServers_SelectedIndexChanged(object? sender, EventArgs e)
     {
         UpdateConnectButtonEnabled();
+        cntryflagsetter(comboServers.SelectedItem);
     }
 
     private void UpdateConnectButtonEnabled()
@@ -163,15 +165,14 @@ public partial class MainForm : Form
                 SetConnectButtonColors(ConnectedColor, ConnectedHover, ConnectedPressed);
                 btnConnectToggle.Content = "Disconnect";
                 lblConnectCaption.Content = "Disconnect";
-                lblConnectionState.Content = "● Connected";
                 // 
-                cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "UN") : "UN")}.svg")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "UN") : "UN")}.svg")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "1x1", "UN.svg"));
-                lblConnectionState.ForeColor = Color.FromArgb(80, 220, 140);
                 var flag = _controller.ConnectedServer != null ? CountryFlags.FindFlag(_controller.ConnectedServer.Name) : "";
                 var name = _controller.ConnectedServer != null
                     ? CountryFlags.FindCountryName(_controller.ConnectedServer.Name) ?? _controller.ConnectedServer.Name
                     : "";
-                lblSelectedServer.Content = $"{flag} {name}";
+                //cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "US") : "US")}.png")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "US") : "US")}.png")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", "US.png"));
+                cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (flag ?? "US") : "US")}.png")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (flag ?? "US") : "US")}.png")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", "US.png"));
+                cntrypic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
                 break;
 
             case ConnectionState.Connecting:
@@ -179,17 +180,12 @@ public partial class MainForm : Form
                 SetConnectButtonColors(BusyColor, BusyColor, BusyColor);
                 btnConnectToggle.Content = _controller.State == ConnectionState.Connecting ? "Connecting…" : "Disconnecting…";
                 lblConnectCaption.Content = btnConnectToggle.Content;
-                lblConnectionState.Content = "● " + btnConnectToggle.Content;
-                lblConnectionState.ForeColor = Color.FromArgb(230, 190, 90);
                 break;
 
             default: // Disconnected
                 SetConnectButtonColors(DisconnectedColor, DisconnectedHover, DisconnectedPressed);
                 btnConnectToggle.Content = "Connect";
                 lblConnectCaption.Content = "Connect";
-                lblConnectionState.Content = "● Disconnected";
-                lblConnectionState.ForeColor = Color.FromArgb(230, 100, 100);
-                lblSelectedServer.Content = "";
                 break;
         }
 
@@ -218,6 +214,14 @@ public partial class MainForm : Form
 
     private void cuiPictureBox1_Load(object sender, EventArgs e)
     {
+        cntryflagsetter(comboServers.SelectedItem);
+    }
 
+    private void cntryflagsetter(string name)
+    {
+        var flag = CountryFlags.FindFlag(name);
+        //cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "US") : "US")}.png")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{(_controller.ConnectedServer != null ? (CountryFlags.FindFlag(_controller.ConnectedServer.Name) ?? "US") : "US")}.png")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", "US.png"));
+        cntrypic.BackgroundImage = File.Exists(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{flag : 'US'}.png")) ? Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", $"{flag: 'US'}.png")) : Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Assets", "flags", "png", "US.png"));
+        cntrypic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
     }
 }

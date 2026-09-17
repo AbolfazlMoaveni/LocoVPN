@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Stimulsoft.Svg.NetCore" Version="2026.2.4" />
+    <PackageReference Include="Svg" Version="3.4.8" />
     <PackageReference Include="YamlDotNet" Version="16.2.1" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="CuoreUI.Winforms" Version="2025.9.19" />

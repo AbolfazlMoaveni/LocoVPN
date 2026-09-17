@@ -26,6 +26,7 @@ partial class MainForm
 
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         btnExit = new cuiButton();
         picLogo = new PictureBox();
         lblTitle = new cuiLabel();
@@ -34,13 +35,9 @@ partial class MainForm
         btnConnectToggle = new cuiButton();
         btnRefresh = new cuiButton();
         txtLog = new TextBox();
-        lblSelectedServer = new cuiLabel();
-        lblConnectionState = new cuiLabel();
-        pnlStatusBar = new cuiPanel();
         lblConnectCaption = new cuiLabel();
         cntrypic = new cuiPictureBox();
         ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
-        pnlStatusBar.SuspendLayout();
         SuspendLayout();
         // 
         // btnExit
@@ -84,7 +81,7 @@ partial class MainForm
         // picLogo
         // 
         picLogo.BackColor = Color.Transparent;
-        picLogo.BackgroundImage = Properties.Resources.logo2;
+        picLogo.BackgroundImage = (Image)resources.GetObject("picLogo.BackgroundImage");
         picLogo.BackgroundImageLayout = ImageLayout.Stretch;
         picLogo.Location = new Point(13, 12);
         picLogo.Name = "picLogo";
@@ -156,7 +153,7 @@ partial class MainForm
         btnConnectToggle.CheckedOutline = Color.FromArgb(255, 106, 0);
         btnConnectToggle.Content = "Connect";
         btnConnectToggle.DialogResult = DialogResult.None;
-        btnConnectToggle.Font = new Font("Impact", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        btnConnectToggle.Font = new Font("Impact", 14F, FontStyle.Bold);
         btnConnectToggle.ForeColor = Color.White;
         btnConnectToggle.HoverBackground = Color.FromArgb(240, 95, 65);
         btnConnectToggle.HoverForeColor = Color.White;
@@ -166,7 +163,7 @@ partial class MainForm
         btnConnectToggle.ImageAutoCenter = true;
         btnConnectToggle.ImageExpand = new Point(0, 0);
         btnConnectToggle.ImageOffset = new Point(0, 0);
-        btnConnectToggle.Location = new Point(126, 385);
+        btnConnectToggle.Location = new Point(119, 385);
         btnConnectToggle.Name = "btnConnectToggle";
         btnConnectToggle.NormalBackground = Color.FromArgb(230, 80, 50);
         btnConnectToggle.NormalForeColor = Color.White;
@@ -177,8 +174,8 @@ partial class MainForm
         btnConnectToggle.PressedForeColor = Color.White;
         btnConnectToggle.PressedImageTint = Color.White;
         btnConnectToggle.PressedOutline = Color.FromArgb(64, 128, 128, 128);
-        btnConnectToggle.Rounding = new Padding(50);
-        btnConnectToggle.Size = new Size(100, 100);
+        btnConnectToggle.Rounding = new Padding(75);
+        btnConnectToggle.Size = new Size(150, 150);
         btnConnectToggle.TabIndex = 6;
         btnConnectToggle.TextAlignment = StringAlignment.Center;
         btnConnectToggle.TextOffset = new Point(0, 0);
@@ -204,7 +201,7 @@ partial class MainForm
         btnRefresh.ImageAutoCenter = true;
         btnRefresh.ImageExpand = new Point(0, 0);
         btnRefresh.ImageOffset = new Point(0, 0);
-        btnRefresh.Location = new Point(12, 349);
+        btnRefresh.Location = new Point(12, 316);
         btnRefresh.Name = "btnRefresh";
         btnRefresh.NormalBackground = Color.Transparent;
         btnRefresh.NormalForeColor = Color.FromArgb(150, 160, 180);
@@ -234,46 +231,7 @@ partial class MainForm
         txtLog.ScrollBars = ScrollBars.Vertical;
         txtLog.Size = new Size(315, 160);
         txtLog.TabIndex = 9;
-        // 
-        // lblSelectedServer
-        // 
-        lblSelectedServer.Content = "";
-        lblSelectedServer.Font = new Font("Segoe UI", 9F);
-        lblSelectedServer.ForeColor = Color.FromArgb(200, 205, 215);
-        lblSelectedServer.HorizontalAlignment = StringAlignment.Center;
-        lblSelectedServer.Location = new Point(140, 0);
-        lblSelectedServer.Margin = new Padding(4, 3, 4, 3);
-        lblSelectedServer.Name = "lblSelectedServer";
-        lblSelectedServer.Size = new Size(147, 44);
-        lblSelectedServer.TabIndex = 1;
-        lblSelectedServer.VerticalAlignment = StringAlignment.Near;
-        // 
-        // lblConnectionState
-        // 
-        lblConnectionState.Content = "●\\ Disconnected";
-        lblConnectionState.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblConnectionState.ForeColor = Color.FromArgb(230, 100, 100);
-        lblConnectionState.HorizontalAlignment = StringAlignment.Center;
-        lblConnectionState.Location = new Point(16, 0);
-        lblConnectionState.Margin = new Padding(4, 3, 4, 3);
-        lblConnectionState.Name = "lblConnectionState";
-        lblConnectionState.Size = new Size(116, 44);
-        lblConnectionState.TabIndex = 0;
-        lblConnectionState.VerticalAlignment = StringAlignment.Near;
-        // 
-        // pnlStatusBar
-        // 
-        pnlStatusBar.BackColor = Color.FromArgb(24, 30, 44);
-        pnlStatusBar.Controls.Add(lblConnectionState);
-        pnlStatusBar.Controls.Add(lblSelectedServer);
-        pnlStatusBar.Location = new Point(12, 530);
-        pnlStatusBar.Name = "pnlStatusBar";
-        pnlStatusBar.OutlineThickness = 1F;
-        pnlStatusBar.PanelColor = Color.FromArgb(255, 106, 0);
-        pnlStatusBar.PanelOutlineColor = Color.FromArgb(255, 106, 0);
-        pnlStatusBar.Rounding = new Padding(22);
-        pnlStatusBar.Size = new Size(327, 44);
-        pnlStatusBar.TabIndex = 8;
+        txtLog.Visible = false;
         // 
         // lblConnectCaption
         // 
@@ -281,15 +239,17 @@ partial class MainForm
         lblConnectCaption.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         lblConnectCaption.ForeColor = Color.White;
         lblConnectCaption.HorizontalAlignment = StringAlignment.Center;
-        lblConnectCaption.Location = new Point(103, 491);
+        lblConnectCaption.Location = new Point(126, 541);
         lblConnectCaption.Margin = new Padding(4, 3, 4, 3);
         lblConnectCaption.Name = "lblConnectCaption";
         lblConnectCaption.Size = new Size(143, 24);
         lblConnectCaption.TabIndex = 7;
         lblConnectCaption.VerticalAlignment = StringAlignment.Near;
+        lblConnectCaption.Visible = false;
         // 
         // cntrypic
         // 
+        cntrypic.BackgroundImageLayout = ImageLayout.Zoom;
         cntrypic.Content = null;
         cntrypic.ImageTint = Color.White;
         cntrypic.Location = new Point(28, 266);
@@ -308,7 +268,6 @@ partial class MainForm
         BackColor = Color.FromArgb(30, 40, 48);
         ClientSize = new Size(400, 600);
         Controls.Add(cntrypic);
-        Controls.Add(pnlStatusBar);
         Controls.Add(lblConnectCaption);
         Controls.Add(btnConnectToggle);
         Controls.Add(btnRefresh);
@@ -319,19 +278,15 @@ partial class MainForm
         Controls.Add(picLogo);
         Controls.Add(btnExit);
         Font = new Font("Cascadia Code SemiBold", 9F, FontStyle.Bold);
+        FormBorderStyle = FormBorderStyle.None;
         Name = "MainForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "LocoVPN";
         FormClosing += MainForm_FormClosing;
         ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
-        pnlStatusBar.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
-
-    private cuiLabel lblSelectedServer;
-    private cuiLabel lblConnectionState;
-    private cuiPanel pnlStatusBar;
     private cuiLabel lblConnectCaption;
     private cuiPictureBox cntrypic;
 }
